@@ -34,8 +34,12 @@ jobs:
           sudo apt-get install -y binutils-arm-none-eabi build-essential libpng-dev
           arm-none-eabi-as --version
 
-      - name: Build host tools (preproc, gbagfx, dll)
+      - name: Build host tools (preproc, mapjson, dll)
         run: make tools -j$(nproc)
+
+      - name: Generate data headers (map_groups.h, dll)
+        run: |
+          make -j$(nproc) || echo "Full GBA build gagal/gak lengkap (wajar, agbcc belum ada) — tapi header hasil generate harusnya udah kebentuk"
 
       - name: Apply SDL2 Android lifecycle patch (best-effort)
         continue-on-error: true

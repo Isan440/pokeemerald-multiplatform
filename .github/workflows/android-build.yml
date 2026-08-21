@@ -39,7 +39,7 @@ jobs:
 
       - name: Generate data headers (map_groups.h, dll)
         run: |
-          make -j$(nproc) || echo "Full GBA build gagal/gak lengkap (wajar, agbcc belum ada) — tapi header hasil generate harusnya udah kebentuk"
+          make -k -j$(nproc) || echo "Full GBA build gagal/gak lengkap (wajar, agbcc belum ada) — tapi header hasil generate harusnya udah kebentuk"
 
       - name: Apply SDL2 Android lifecycle patch (best-effort)
         continue-on-error: true

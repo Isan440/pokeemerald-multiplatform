@@ -28,6 +28,12 @@ jobs:
           yes | sdkmanager --licenses || true
           sdkmanager "platforms;android-36" "build-tools;36.0.0" "ndk;26.3.11579264" "cmake;3.22.1"
 
+      - name: Install ARM EABI binutils (for GBA-era .s assembly files)
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y binutils-arm-none-eabi
+          arm-none-eabi-as --version
+
       - name: Apply SDL2 Android lifecycle patch (best-effort)
         continue-on-error: true
         run: |
